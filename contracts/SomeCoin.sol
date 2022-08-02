@@ -13,7 +13,12 @@ contract SomeCoin is ERC20{
     }
 
     function mint(address account, uint amount) external{
-        // require(account==owner,"Unauthorized");
+        require(account==owner,"Unauthorized");
         _mint(account,amount);
+    }
+
+    function transferOwner(address newOwner) external{
+        require(msg.sender==owner,"Unauthorized");
+        owner = newOwner;
     }
 }
